@@ -8,12 +8,12 @@ workflows:
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.clvroiw.Match
+        bundle_identifier: com.clvroiw.joyful
       vars:
-        BUNDLE_ID: "com.clvroiw.Match"
+        BUNDLE_ID: "com.clvroiw.joyful"
         XCODE_WORKSPACE: "hello_world.xcworkspace"
         XCODE_SCHEME: "hello_world-mobile"
-        APP_STORE_APPLE_ID: 6504914225
+        APP_STORE_APPLE_ID: 6504915452
       xcode: latest # <-- set to specific version e.g. 14.3, 15.0 to avoid unexpected updates.
       cocoapods: default
     scripts:
