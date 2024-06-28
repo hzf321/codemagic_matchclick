@@ -51,9 +51,5 @@
     "recordPath": ""
   },
   "appBundle": false,
-  "agreements": {},
-  "openharmony": {
-    "packageName": "com.cocos.openharmony",
-    "REMOTE_SERVER_ROOT": ""
-  }
+  "agreements": {}
 }

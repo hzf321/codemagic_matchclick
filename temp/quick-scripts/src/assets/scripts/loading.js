@@ -53,7 +53,7 @@ var loading = /** @class */ (function (_super) {
         });
     };
     loading.prototype.onClick_PrivacyPolicy_btn = function () {
-        cc.sys.openURL("https://sites.google.com/view/beautyunveiledprivacypolicy/home");
+        cc.sys.openURL("https://sites.google.com/view/matchclickprivacypolicy/home");
     };
     loading = __decorate([
         ccclass

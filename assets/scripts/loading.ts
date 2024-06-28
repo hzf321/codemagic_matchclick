@@ -12,7 +12,7 @@ export default class loading extends cc.Component {
                 if (err) {
                     return;
                 }
-                let toast = cc.instantiate(prefab);
+                let toast :any= cc.instantiate(prefab);
                 let parentNode = cc.Canvas.instance.node;
                 if (toast && parentNode) {
                     toast.active = true;
@@ -31,7 +31,7 @@ export default class loading extends cc.Component {
 
     
     onClick_PrivacyPolicy_btn() {
-        cc.sys.openURL("https://sites.google.com/view/beautyunveiledprivacypolicy/home");
+        cc.sys.openURL("https://sites.google.com/view/matchclickprivacypolicy/home");
     }
 
 }

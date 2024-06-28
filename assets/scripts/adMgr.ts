@@ -25,7 +25,7 @@ class adMgrClass {
             if (err) {
                 return;
             }
-            let toast = cc.instantiate(prefab);
+            let toast :any= cc.instantiate(prefab);
             let parentNode = cc.Canvas.instance.node;
             if (toast && parentNode) {
                 toast.active = true;

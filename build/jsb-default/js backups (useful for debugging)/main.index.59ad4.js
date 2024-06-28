@@ -2557,10 +2557,11 @@ return r > 3 && i && Object.defineProperty(o, e, i), i;
 Object.defineProperty(e, "__esModule", {
 value: !0
 });
-var i = t("./TileBlock"), c = t("./game_config_dyn"), s = t("./game_helpers"), u = t("./global_model"), a = t("./game_core"), d = t("./game_constants"), f = t("./adMgr"), p = cc._decorator, y = p.ccclass, h = p.property, v = function(t) {
+var i = t("./TileBlock"), c = t("./game_config_dyn"), s = t("./game_helpers"), u = t("./global_model"), a = t("./game_core"), d = t("./game_constants"), f = t("./adMgr"), p = t("./level_mgr"), y = cc._decorator, h = y.ccclass, v = y.property, _ = function(t) {
 n(o, t);
 function o() {
 var o = null !== t && t.apply(this, arguments) || this;
+o.Levels = null;
 o.tileContainer = null;
 o.targetNode = null;
 o.tileList = [];
@@ -2583,9 +2584,6 @@ o.result_view_win = null;
 o.result_view_lose = null;
 o.help_view = null;
 o.levels_view = null;
-o.mask1 = null;
-o.mask2 = null;
-o.mask3 = null;
 o.minZindex = 1e4;
 o.progress_levelBase = .001;
 o.progress_levelBase_org = 2e-4;
@@ -3037,10 +3035,12 @@ o.prototype.go_nextLv = function() {
 u.default.game.selectedLevel++;
 this.result_view.active = !1;
 this.game_reinit();
+this.Levels.getComponent(p.default).updataData();
 };
 o.prototype.go_game_reinit = function() {
 this.result_view.active = !1;
 this.game_reinit();
+this.Levels.getComponent(p.default).updataData();
 };
 o.prototype.hideshow_settingView = function() {};
 o.prototype.toggleMusic = function() {
@@ -3055,29 +3055,27 @@ this.levels_view.active = !this.levels_view.active;
 o.prototype.openFbToshare = function() {
 cc.sys.openURL("fb://");
 };
-r([ h(cc.Node) ], o.prototype, "tileContainer", void 0);
-r([ h(cc.Node) ], o.prototype, "targetNode", void 0);
-r([ h(cc.Label) ], o.prototype, "level_txt", void 0);
-r([ h(cc.Label) ], o.prototype, "txt_undo", void 0);
-r([ h(cc.Label) ], o.prototype, "txt_shuffle", void 0);
-r([ h(cc.Label) ], o.prototype, "txt_hint", void 0);
-r([ h(cc.Label) ], o.prototype, "txt_put3", void 0);
-r([ h(cc.ProgressBar) ], o.prototype, "node_progress", void 0);
-r([ h(cc.Node) ], o.prototype, "node_star1", void 0);
-r([ h(cc.Node) ], o.prototype, "node_star2", void 0);
-r([ h(cc.Node) ], o.prototype, "node_star3", void 0);
-r([ h(cc.Node) ], o.prototype, "node_warning", void 0);
-r([ h(cc.Node) ], o.prototype, "result_view", void 0);
-r([ h(cc.Node) ], o.prototype, "result_view_win", void 0);
-r([ h(cc.Node) ], o.prototype, "result_view_lose", void 0);
-r([ h(cc.Node) ], o.prototype, "help_view", void 0);
-r([ h(cc.Node) ], o.prototype, "levels_view", void 0);
-r([ h(cc.Node) ], o.prototype, "mask1", void 0);
-r([ h(cc.Node) ], o.prototype, "mask2", void 0);
-r([ h(cc.Node) ], o.prototype, "mask3", void 0);
-return r([ y ], o);
+r([ v(cc.Node) ], o.prototype, "Levels", void 0);
+r([ v(cc.Node) ], o.prototype, "tileContainer", void 0);
+r([ v(cc.Node) ], o.prototype, "targetNode", void 0);
+r([ v(cc.Label) ], o.prototype, "level_txt", void 0);
+r([ v(cc.Label) ], o.prototype, "txt_undo", void 0);
+r([ v(cc.Label) ], o.prototype, "txt_shuffle", void 0);
+r([ v(cc.Label) ], o.prototype, "txt_hint", void 0);
+r([ v(cc.Label) ], o.prototype, "txt_put3", void 0);
+r([ v(cc.ProgressBar) ], o.prototype, "node_progress", void 0);
+r([ v(cc.Node) ], o.prototype, "node_star1", void 0);
+r([ v(cc.Node) ], o.prototype, "node_star2", void 0);
+r([ v(cc.Node) ], o.prototype, "node_star3", void 0);
+r([ v(cc.Node) ], o.prototype, "node_warning", void 0);
+r([ v(cc.Node) ], o.prototype, "result_view", void 0);
+r([ v(cc.Node) ], o.prototype, "result_view_win", void 0);
+r([ v(cc.Node) ], o.prototype, "result_view_lose", void 0);
+r([ v(cc.Node) ], o.prototype, "help_view", void 0);
+r([ v(cc.Node) ], o.prototype, "levels_view", void 0);
+return r([ h ], o);
 }(cc.Component);
-e.default = v;
+e.default = _;
 cc._RF.pop();
 }, {
 "./TileBlock": "TileBlock",
@@ -3086,7 +3084,8 @@ cc._RF.pop();
 "./game_constants": "game_constants",
 "./game_core": "game_core",
 "./game_helpers": "game_helpers",
-"./global_model": "global_model"
+"./global_model": "global_model",
+"./level_mgr": "level_mgr"
 } ],
 game_model: [ function(t, o, e) {
 "use strict";
@@ -3244,15 +3243,15 @@ this.showTiles[1].position = this.oldPos[1];
 this.showTiles[2].position = this.oldPos[2];
 cc.tween(this.showTiles[0]).delay(.9).to(.5, {
 x: -173.907,
-y: -231
+y: -187.212
 }).start();
 cc.tween(this.showTiles[1]).delay(1.3).to(.5, {
 x: -86.697,
-y: -231
+y: -187.212
 }).start();
 cc.tween(this.showTiles[2]).delay(1.7).to(.5, {
 x: 1.942,
-y: -231
+y: -187.212
 }).delay(.1).call(function() {
 cc.tween(t.showTiles[0]).to(.2, {
 scale: 0
@@ -3485,6 +3484,12 @@ t.initLevelItem(e + 1, e + 1 == o, e + 1 > o);
 });
 cc.systemEvent.on(u.default.select_level_clicked, this.closeLvView, this);
 };
+o.prototype.updataData = function() {
+var t = a.default.game.level;
+this.AllLvItems.forEach(function(o, e) {
+o.initLevelItem(e + 1, e + 1 == t, e + 1 > t);
+});
+};
 o.prototype.closeLvView = function() {
 this.node.active = !1;
 };
@@ -3559,7 +3564,7 @@ e.destroy();
 });
 };
 o.prototype.onClick_PrivacyPolicy_btn = function() {
-cc.sys.openURL("https://sites.google.com/view/beautyunveiledprivacypolicy/home");
+cc.sys.openURL("https://sites.google.com/view/matchclickprivacypolicy/home");
 };
 return r([ s ], o);
 }(cc.Component));

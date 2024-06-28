@@ -13,8 +13,6 @@ static UnityMgr* _instance = nil;
 
 BOOL myBoolVariable = NO;
 
-
-
 + (UnityMgr*) shareInstance {
    static dispatch_once_t onceToken ;
    dispatch_once(&onceToken, ^{
@@ -27,7 +25,7 @@ BOOL myBoolVariable = NO;
 - (void)initsdk:(UIViewController*) view {
    NSLog(@"UnityMgr====== 初始化sdk" );
    self.viewController = view;
-   [UnityAds initialize:@"5645377" testMode:NO initializationDelegate:self];
+   [UnityAds initialize:@"5626240" testMode:NO initializationDelegate:self];
 }
 
 + (void)testlog{

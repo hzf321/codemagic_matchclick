@@ -174,11 +174,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           } // decode UTF-16 to binary string
 
 
-          if (globalThis.oh) {
-            bb.push(decodeURI(encodeURIComponent(data)));
-          } else {
-            bb.push(unescape(encodeURIComponent(data)));
-          }
+          bb.push(unescape(encodeURIComponent(data)));
         }
       };
 
@@ -5064,10 +5060,6 @@ function inject() {
     enumerable: true,
     configurable: true
   });
-
-  if (globalThis.oh) {
-    globalThis.oh.devicePixelRatio = jsb.device.getDevicePixelRatio();
-  }
 
   window.addEventListener = function (eventName, listener, options) {
     window.__canvas.addEventListener(eventName, listener, options);
